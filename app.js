@@ -63,7 +63,7 @@ let instance2 = new
 desert({desert_type:"Thiramisu", size:'10',
 cost:500});
 instance2.save().then(doc=>{
-console.log("First object saved")}
+console.log("Second object saved")}
 ).catch(err=>{
 console.error(err)
 });
@@ -71,7 +71,7 @@ let instance3 = new
 desert({desert_type:"GulabJamun", size:'10',
 cost:170});
 instance3.save().then(doc=>{
-console.log("First object saved")}
+console.log("Third object saved")}
 ).catch(err=>{
 console.error(err)
 });
