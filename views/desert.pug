@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let results=[{name:"CheeseCake",price:650,quantity:50},{name:"Thiramisu",price:500,quantity:10},{name:"GulabJamun",price:170,quantity:10},{name:"Halwa",price:"30",quantity:"2"}]
+  - let results=[{name:"CheeseCake",price:650,quantity:50},{name:"Thiramisu",price:500,quantity:10},{name:"GulabJamun",price:170,quantity:10}]
   div(class="container-fluid")
   div(class="row")
    each value,index in results
