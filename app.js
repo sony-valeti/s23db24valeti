@@ -51,8 +51,8 @@ async function recreateDB(){
 // Delete everything
 await desert.deleteMany();
 let instance1 = new
-desert({desert_type:"CheeseCake", size:'50',
-cost:650});
+desert({desert_type:"CheeseCake", cost:'50',
+size:650});
 instance1.save().then(doc=>{
 console.log("First object saved")}
 ).catch(err=>{
@@ -60,16 +60,16 @@ console.error(err)
 });
 }
 let instance2 = new
-desert({desert_type:"Thiramisu", size:'10',
-cost:500});
+desert({desert_type:"Thiramisu", cost:'10',
+size:500});
 instance2.save().then(doc=>{
 console.log("Second object saved")}
 ).catch(err=>{
 console.error(err)
 });
 let instance3 = new
-desert({desert_type:"GulabJamun", size:'10',
-cost:170});
+desert({desert_type:"GulabJamun", cost:'10',
+size:170});
 instance3.save().then(doc=>{
 console.log("Third object saved")}
 ).catch(err=>{
