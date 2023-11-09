@@ -4,11 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var desertRouter = require('./routes/desert');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,8 +34,52 @@ app.use('/users', usersRouter);
 app.use('/desert',desertRouter);
 app.use('/board',boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource', resourceRouter);
 
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+var desert = require("./models/desert");
 // catch 404 and forward to error handler
+
+// We can seed the collection if needed on
+//server start
+async function recreateDB(){
+// Delete everything
+await desert.deleteMany();
+let instance1 = new
+desert({desert_type:"CheeseCake", size:'50',
+cost:650});
+instance1.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+}
+let instance2 = new
+desert({desert_type:"Thiramisu", size:'10',
+cost:500});
+instance2.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+let instance3 = new
+desert({desert_type:"GulabJamun", size:'10',
+cost:170});
+instance3.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let reseed = true;
+if (reseed) {recreateDB();}
+
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
