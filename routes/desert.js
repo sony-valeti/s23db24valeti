@@ -1,9 +1,6 @@
 var express = require('express');
+const desert_controllers= require('../controllers/desert');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('desert', { title: 'Search Results Desert' });
-});
-
+/* GET costumes */
+router.get('/', desert_controllers.desert_view_all_Page);
 module.exports = router;
