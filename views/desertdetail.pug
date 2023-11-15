@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let desertid = toShow._id
+ - let desert_type = toShow.desert_type
+ - let desertsize = toShow.size
+ - let desertcost = toShow.cost
+ div
+ div.row
+ div(class='desertAttr mr-3') desert ID is:
+ div #{desertid}
+ div.row
+ div(class='desertAttr mr-3') desert Type is:
+ div #{desert_type}
+ div.row
+ div(class='desertAttr mr-3') desert Size is:
+ div #{desertsize}
+ div.row
+ div(class='desertAttr mr-3') desert Cost is:
+ div #{desertcost}
