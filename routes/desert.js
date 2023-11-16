@@ -9,4 +9,7 @@ router.get('/detail', desert_controllers.desert_view_one_Page);
 router.get('/create', desert_controllers.desert_create_Page);
 /* GET create update page */
 router.get('/update', desert_controllers.desert_update_Page);
+/* GET delete costume page */
+router.get('/delete', desert_controllers.desert_delete_Page);
+
 module.exports = router;
