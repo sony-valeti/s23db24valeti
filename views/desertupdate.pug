@@ -1,40 +1,43 @@
 extends layout
 block content
   h1= title
-  - let desertid = toShow._id
-  - let desert_type = toShow.desert_type
-  - let desertsize = toShow.size
-  - let desertcost = toShow.cost
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let desertid = toShow._id
+    - let desert_type = toShow.desert_type
+    - let desertsize = toShow.size
+    - let desertcost = toShow.cost
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{desertid}
-    - let actionid = "/resource/desert/" + desertid
-    form(id='desertForm', action= actionid, method="PUT")
-      div.form-group
-        label.desertAttr(for='desert_type') Desert type
-        input#desert_type(type='text', name='desert_type', value= desert_type )
-      div.form-group
-        label.desertAttr(for='size') Desert size
-        input#size(type='text', name='size', value= desertsize )
-      div.form-group
-        label.desertAttr(for='cost') Desert cost
-        input#cost(type='number', name='cost', value= desertcost )
-      input(type="submit")
-    script.
-      document.forms['desertForm'].addEventListener('submit', (event) => {
-        event.preventDefault();
-        // TODO do something here to show the user that the form is being submitted
-        fetch(event.target.action, {
-          method: 'PUT',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-        }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-          alert("Update succeeded");
-          // TODO handle body
-        }).catch((error) => {
-          // TODO handle error
-          alert("Update failed " + error);
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{desertid}
+      - let actionid = "/resource/desert/" + desertid
+      form(id='desertForm', action= actionid, method="PUT")
+        div.form-group
+          label.desertAttr(for='desert_type') Desert type
+          input#desert_type(type='text', name='desert_type', value= desert_type )
+        div.form-group
+          label.desertAttr(for='size') Desert size
+          input#size(type='text', name='size', value= desertsize )
+        div.form-group
+          label.desertAttr(for='cost') Desert cost
+          input#cost(type='number', name='cost', value= desertcost )
+        input(type="submit")
+      script.
+        document.forms['desertForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show the user that the form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeeded");
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error);
+          });
         });
-      });
