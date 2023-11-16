@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  form(id='desertForm', action='/resource/desert', method='POST')
+    div.form-group
+      label.desertAttr(for='desert_type') desert_type
+      input#desert_type(type='text', name='desert_type')
+    div.form-group
+      label.desertAttr(for='color') desert color
+      input#color(type='text', name='color')
+    div.form-group
+      label.desertAttr(for='cost') desert cost
+      input#cost(type='number', name='cost')
+    input(type='submit')
+  script.
+    document.forms['desertForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO: do something here to show the user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      })
+      .then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      })
+      .then((body) => {
+        alert('Save succeeded');
+        // TODO: handle the response body
+      })
+      .catch((error) => {
+        alert('Save failed: ' + error);
+        // TODO: handle the error
+      });
+    });

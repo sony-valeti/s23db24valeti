@@ -5,4 +5,8 @@ var router = express.Router();
 router.get('/', desert_controllers.desert_view_all_Page);
 /* GET detail costume page */
 router.get('/detail', desert_controllers.desert_view_one_Page);
+/* GET create costume page */
+router.get('/create', desert_controllers.desert_create_Page);
+/* GET create update page */
+router.get('/update', desert_controllers.desert_update_Page);
 module.exports = router;
