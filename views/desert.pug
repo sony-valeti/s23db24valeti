@@ -2,15 +2,14 @@ extends layout
 
 block content
   h1= title
-  - let results=[{name:"CheeseCake",price:650,quantity:50},{name:"Thiramisu",price:500,quantity:10},{name:"GulabJamun",price:170,quantity:10}]
-  div(class="container-fluid")
-  div(class="row")
-   each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.name} Desert, cost #{value.price}, quantity #{value.quantity}
-    script.
-        function buy(a)
-        {
-            
-            alert(`You purchased Item ${a+1}`)
-        }
-        
+  - let deserts = [{ name: "CheeseCake", price: 650, quantity: 50 },{ name: "Thiramisu", price: 500, quantity: 10 },{ name: "GulabJamun", price: 170, quantity: 10 }]
+    div(class="container-fluid")
+        div(class="row m-1")
+        each value in results
+            - let destination = `dispatch("/desert/update?id=${value._id}")`
+            div(class="row-sm-2 m-1") #{value.name} Desert, cost #{value.price}, quantity #{value.quantity}
+            button.btn(class="btn-primary ml-1", onclick=destination) Update
+        script.
+            function dispatch(path) {
+            window.location.href = path
+            }
