@@ -7,8 +7,8 @@ block content
   else
     - let desertid = toShow._id
     - let desert_type = toShow.desert_type
-    - let desertsize = toShow.size
-    - let desertcost = toShow.cost
+    - let desertprice = toShow.price
+    - let desertquantity = toShow.quantity
     - let actionid = "/resource/desert/" + desertid
 
     script.
@@ -22,11 +22,11 @@ block content
         div(class='desertAttr mr-3') desert Type is:
         div #{desert_type}
       div.row
-        div(class='desertAttr mr-3') desert Size is:
-        div #{desertsize}
+        div(class='desertAttr mr-3') desert Price is:
+        div #{desertprice}
       div.row
-        div(class='desertAttr mr-3') desert Cost is:
-        div #{desertcost}
+        div(class='desertAttr mr-3') desert Quantity is:
+        div #{desertquantity}
       
       button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
       button(class="btn btn-secondary m-2" onclick="cancel()") Cancel

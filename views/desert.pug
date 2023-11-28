@@ -2,14 +2,20 @@ extends layout
 
 block content
   h1= title
-  - let deserts = [{ name: "CheeseCake", price: 650, quantity: 50 },{ name: "Thiramisu", price: 500, quantity: 10 },{ name: "GulabJamun", price: 170, quantity: 10 }]
+  - let deserts = [{ desert_type: "CheeseCake", price: 650, quantity: 50 },{ desert_type: "Thiramisu", price: 500, quantity: 10 },{ desert_type: "GulabJamun", price: 170, quantity: 10 }]
     div(class="container-fluid")
         div(class="row m-1")
         each value in results
-            - let destination = `dispatch("/desert/update?id=${value._id}")`
-            div(class="row-sm-2 m-1") #{value.name} Desert, cost #{value.price}, quantity #{value.quantity}
+          - let destination = `dispatch("/desert/update?id=${value._id}")`
+          - let deletes = `dispatch("/desert/delete?id=${value._id}")`
+          - let create = `dispatch("/desert/create?id=${value._id}")`
+          div(class="row m-1")
+            div(class="row-sm-2 m-1") 
+              | Desert #{value.desert_type} , cost #{value.price}, quantity #{value.quantity}
             button.btn(class="btn-primary ml-1", onclick=destination) Update
-        script.
-            function dispatch(path) {
-            window.location.href = path
-            }
+            button.btn(class="btn-primary ml-1", onclick=deletes) Delete
+            button.btn(class="btn-primary ml-1", onclick=create) Create
+    script.
+      function dispatch(path) {
+        window.location.href = path;
+      }

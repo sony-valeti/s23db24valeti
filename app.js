@@ -84,33 +84,30 @@ passport.deserializeUser(Account.deserializeUser());
 // We can seed the collection if needed on
 //server start
 async function recreateDB(){
-// Delete everything
-await desert.deleteMany();
-let instance1 = new
-desert({desert_type:"CheeseCake", cost:'50',
-size:650});
-instance1.save().then(doc=>{
-console.log("First object saved")}
-).catch(err=>{
-console.error(err)
-});
-}
-let instance2 = new
-desert({desert_type:"Thiramisu", cost:'10',
-size:500});
-instance2.save().then(doc=>{
-console.log("Second object saved")}
-).catch(err=>{
-console.error(err)
-});
-let instance3 = new
-desert({desert_type:"GulabJamun", cost:'10',
-size:170});
-instance3.save().then(doc=>{
-console.log("Third object saved")}
-).catch(err=>{
-console.error(err)
-});
+  // Delete everything
+  await desert.deleteMany();
+  let instance1 = new
+ desert({ desert_type: "CheeseCake", price: 650, quantity: 50});
+  instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  let instance2 = new
+ desert({desert_type: "Thiramisu", price: 500, quantity: 10});
+  instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  let instance3 = new
+ desert({desert_type: "GulabJamun", price: 170, quantity: 10});
+  instance3.save().then(doc=>{
+  console.log("Third object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+ }
 
 let reseed = true;
 if (reseed) {recreateDB();}
