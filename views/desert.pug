@@ -4,17 +4,21 @@ block content
   h1= title
   - let deserts = [{ desert_type: "CheeseCake", price: 650, quantity: 50 },{ desert_type: "Thiramisu", price: 500, quantity: 10 },{ desert_type: "GulabJamun", price: 170, quantity: 10 }]
     div(class="container-fluid")
+    - let create = `dispatch("/desert/create")`
+    button.btn(class="btn-info", onclick=create) Add new Desert
+    <br>
+    <br>
         div(class="row m-1")
         each value in results
           - let destination = `dispatch("/desert/update?id=${value._id}")`
           - let deletes = `dispatch("/desert/delete?id=${value._id}")`
-          - let create = `dispatch("/desert/create?id=${value._id}")`
+          - let detail = `dispatch("/desert/detail?id=${value._id}")`
           div(class="row m-1")
             div(class="row-sm-2 m-1") 
               | Desert #{value.desert_type} , cost #{value.price}, quantity #{value.quantity}
             button.btn(class="btn-primary ml-1", onclick=destination) Update
             button.btn(class="btn-primary ml-1", onclick=deletes) Delete
-            button.btn(class="btn-primary ml-1", onclick=create) Create
+            button.btn(class="btn-primary ml-1", onclick=detail) Detail
     script.
       function dispatch(path) {
         window.location.href = path;
